@@ -57,3 +57,19 @@ def borrow(request,id):
         "book":book,
     }
     return render(request,"department/book_details.html",context=context)
+
+
+def update(request,id):
+    book = get_object_or_404(Book,id=id)
+    if request.method=='POST':
+        form = AddBook(request.POST,instance = book )
+        if form.is_valid():
+            form.save()
+            return redirect('view_books')
+    else:
+        form = AddBook(instance=book)
+
+    context={
+        "form":form,
+    }
+    return render(request,"department/update_books.html",context=context)

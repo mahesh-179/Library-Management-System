@@ -1,0 +1,16 @@
+{% extends "department/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<form method="POST">
+<center><h3>UPDATE BOOK ENTRY </h3></center>
+    {% csrf_token %}
+
+    {{form|crispy}}
+
+    <button type="submit" class="btn btn-primary">Update Book </button>
+    <a href="{% url "home" %}"  class="btn btn-danger">Cancel </a>
+
+</form>
+
+{% endblock %}

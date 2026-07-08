@@ -8,5 +8,6 @@ urlpatterns = [
     path('add_author/',views.add_author,name="add_author"),
     path('book_details/<int:id>/',views.book_details,name="details"),
     path('borrow/<int:id>/',views.borrow,name="borrow"),
+    path('update/<int:id>/',views.update,name='update'),
     
 ]
