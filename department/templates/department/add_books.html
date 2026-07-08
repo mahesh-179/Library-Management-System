@@ -1,14 +1,15 @@
 {% extends "department/base.html" %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 
 <form method="POST">
-
+<center><h3>BOOK ENTRY </h3></center>
     {% csrf_token %}
 
-    {{form.as_p}}
+    {{form|crispy}}
 
-    <button type="submit">Add Author </button>
+    <button type="submit" class="btn btn-primary">Add Book </button>
+    <a href="{% url "home" %}"  class="btn btn-danger">Cancel </a>
 
 </form>
 
