@@ -1,0 +1,25 @@
+{% extends 'department/base.html' %}
+{% block content %}
+
+{% if books %}
+
+{% for book in books  %}
+<ul>
+    <li>NAME:{{book.title}}</li>-{{book.author.name}} |
+    
+    {% if book.is_available %}
+    Available- Available(in stock) | Remaining Copies = {{book.copies_available}}
+    {% else %}
+    out of stock
+        
+    {% endif %}
+        
+</ul>
+    
+{% endfor %}
+    
+    
+{% endif %}
+    
+
+{% endblock %}
