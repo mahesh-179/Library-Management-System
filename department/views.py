@@ -45,3 +45,15 @@ def book_details(request,id):
         "book":book,
     }
     return render(request,"department/book_details.html",context=context)
+
+def borrow(request,id):
+    book = get_object_or_404(Book,id=id)
+    if request.method=='POST':
+         if book.copies_available > 0:
+            book.copies_available -= 1
+            book.save()
+            return redirect('view_books')
+    context = {
+        "book":book,
+    }
+    return render(request,"department/book_details.html",context=context)
