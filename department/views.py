@@ -38,3 +38,10 @@ def add_book(request):
         "form":form,
     }
     return render(request,"department/add_books.html",context=context)
+
+def book_details(request,id):
+    book = get_object_or_404(Book,id=id)
+    context = {
+        "book":book,
+    }
+    return render(request,"department/book_details.html",context=context)

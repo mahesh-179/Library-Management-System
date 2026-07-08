@@ -1,4 +1,20 @@
 {% extends 'department/base.html' %}
 {% block content %}
-<center><h2>Welcome to our library Management System</h2></center>
+
+<div class="container mt-5">
+
+    <div class="text-center p-5 bg-light rounded shadow-sm">
+        <h1 class="display-5 fw-bold">📚 Library Management System</h1>
+        <p class="lead mt-3">
+            Welcome to the Library Management System. This system allows you to
+            view available books, borrow books, and return them easily.
+        </p>
+
+        <a href="{% url 'view_books' %}" class="btn btn-primary mt-3">
+            View Books
+        </a>
+    </div>
+
+</div>
+
 {% endblock %}
