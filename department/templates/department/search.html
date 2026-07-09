@@ -1,14 +1,18 @@
 {% extends 'department/base.html' %}
 {% block content %}
-  <div class="card mb-4 shadow-sm">
-                    <div class="card-body">
-                        <form class="d-flex" role="search" action="{% url "search" %}" method="get">
-                            <input class="form-control me-2" name="query" id="query" type="search" placeholder="Search for author or title" aria-label="Search">
-                            <button class="btn btn-primary" type="submit">Search</button>
-                        </form>
-                    </div>
-                </div>
-                
+{% if books|length < 1 %}
+<p> NO RESULT FOUND </p>
+<p>Your search - <b>{{query}}</b> - did not match any documents.</p>
+
+<p>Suggestions:</p>
+    <ul>
+        <li>Make sure that all words are spelled correctly.</li>
+        <li>Try different keywords.</li>
+        <li>Try more general keywords.</li>
+    </ul>
+
+{% endif %}
+{% if books %}
 <table class="table table-bordered table-hover align-middle">
   <thead class="table-dark">
     <tr>
@@ -44,5 +48,5 @@
     {% endfor %}
   </tbody>
 </table>
-
+{% endif %}
 {% endblock %}

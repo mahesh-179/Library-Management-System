@@ -96,3 +96,20 @@ def return_books(request,id):
         "book":book,
     }
     return render(request,"department/book_details.html",context=context)
+
+
+from django.db.models import Q
+
+def search(request):
+    query = request.GET.get('query', '')
+
+    books = Book.objects.filter(
+        Q(title__icontains=query) |
+        Q(author__name__icontains=query)
+    )
+
+    context = {
+        "books": books,
+        "query":query,
+    }
+    return render(request, "department/search.html", context)

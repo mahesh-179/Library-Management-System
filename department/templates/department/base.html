@@ -56,10 +56,12 @@
 
             </ul>
 
-            <form class="d-flex">
+            <form method="get" action="{% url 'search' %}" class="d-flex">
                 <input class="form-control me-2"
                        type="search"
                        placeholder="Search"
+                       name="query"
+                       id="query"
                        aria-label="Search">
 
                 <button class="btn btn-outline-success" type="submit">
