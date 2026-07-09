@@ -34,15 +34,18 @@
                 <a href="{% url 'view_books' %}" class="btn btn-secondary">
                     Back
                 </a>
-
-                {% if book.copies_available > 0 %}
                 <form method="POST" action="{% url 'borrow' book.id %}">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-primary">
                         Borrow
                     </button>
                 </form>
-                {% endif %}
+               <form method="POST" action="{% url 'return' book.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">
+                        Return
+                    </button>
+                </form>
             </div>
 
         </div>

@@ -52,7 +52,6 @@ def borrow(request,id):
          if book.copies_available > 0:
             book.copies_available -= 1
             book.save()
-            return redirect('view_books')
     context = {
         "book":book,
     }
@@ -73,3 +72,27 @@ def update(request,id):
         "form":form,
     }
     return render(request,"department/update_books.html",context=context)
+
+
+
+def delete(request,id):
+    book = get_object_or_404(Book,id=id)
+    if request.method =='POST':
+        book.delete()
+        return redirect('view_books')
+    context = {
+        "book":book,  
+    }
+    return render(request,"department/delete_books.html",context=context)
+
+
+def return_books(request,id):
+    book = get_object_or_404(Book,id=id)
+    if request.method=='POST':
+        if book.copies_available < book.copies_total:
+            book.copies_available += 1
+            book.save()
+    context = {
+        "book":book,
+    }
+    return render(request,"department/book_details.html",context=context)

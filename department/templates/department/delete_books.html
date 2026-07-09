@@ -1,0 +1,28 @@
+{% extends "department/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h3 class="text-danger">Delete Book</h3>
+
+        <p>
+            Are you sure you want to delete
+            <strong>{{ book.title|upper }}</strong>
+            by <strong>{{ book.author.name|upper }}</strong>?
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">
+                Delete
+            </button>
+            <a href="{% url 'view_books' %}" class="btn btn-secondary">
+                Cancel
+            </a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

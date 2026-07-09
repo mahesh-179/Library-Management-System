@@ -9,5 +9,7 @@ urlpatterns = [
     path('book_details/<int:id>/',views.book_details,name="details"),
     path('borrow/<int:id>/',views.borrow,name="borrow"),
     path('update/<int:id>/',views.update,name='update'),
+    path('delete/<int:id>/',views.delete,name="delete"),
+    path('return_books/<int:id>/',views.return_books,name="return"),
     
 ]
