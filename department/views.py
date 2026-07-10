@@ -1,14 +1,18 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Book
 from .forms import AddAuthor,AddBook
+from django.core.paginator import Paginator
 # Create your views here.
 def home(request):
     return render(request,"department/home.html")
 
 def books_display(request):
     books = Book.objects.all()
+    paginator = Paginator(books,4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
-        "books":books,
+        "page_obj":page_obj,
     }
     return render(request,"department/bookdisplay.html",context=context)
 
@@ -31,7 +35,7 @@ def add_book(request):
         form = AddBook(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('view_books')
     else:
         form = AddBook()
     context = {
